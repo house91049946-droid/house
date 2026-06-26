@@ -14,3 +14,6 @@ wheels/
 
 # OS
 .DS_Store
+
+# Claude Code 本機設定
+.claude/

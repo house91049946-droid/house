@@ -1,0 +1,8 @@
+# 登入 session(含個資/憑證,切勿提交)
+auth/
+# 除錯截圖
+screenshots/
+# 真實物件資料與照片
+data/listings.csv
+data/photos/*
+!data/photos/.gitkeep
