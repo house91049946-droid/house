@@ -3,5 +3,6 @@ pandas>=2.0
 numpy>=1.26
 matplotlib>=3.8
 requests>=2.31
+scikit-learn>=1.4
 firstrade>=0.0.30
 python-dotenv>=1.0

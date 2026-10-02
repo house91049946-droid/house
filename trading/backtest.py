@@ -12,10 +12,12 @@ def run_backtest(
     prices: pd.DataFrame,
     scfg: StrategyConfig = STRATEGY,
     bcfg: BacktestConfig = BACKTEST,
+    weights_override: pd.DataFrame | None = None,
 ) -> tuple[pd.Series, pd.DataFrame]:
     """回傳 (每日淨值序列, 每月目標權重表)。
 
     模型：月底收盤算訊號，用隔日收盤價換倉（保守，略差於開盤成交）。
+    weights_override：給定每月目標權重（例如套過 ML 信心的），就不重算訊號。
     """
     rets = prices.pct_change().fillna(0.0)
     rebal_days = month_end_dates(prices.index)
@@ -38,7 +40,12 @@ def run_backtest(
             pending = None
         equity[day] = nav
         if day in rebal_days:
-            tw = target_weights(prices, day, scfg)
+            if weights_override is not None:
+                if day not in weights_override.index:
+                    continue
+                tw = weights_override.loc[day]
+            else:
+                tw = target_weights(prices, day, scfg)
             weights_log[day] = tw
             pending = tw.reindex(prices.columns).fillna(0.0)
 
@@ -82,7 +89,7 @@ def main() -> None:
 
     print("\n=== 回測結果 ===")
     for k, v in m.items():
-        print(f"{k:>16}: {v:8.2%}" if k != "Years" else f"{k:>16}: {v:8.1f}")
+        print(f"{k:>16}: {v:8.2f}" if k in ("Years", "Sharpe") else f"{k:>16}: {v:8.2%}")
     print("\n最近 6 次目標權重：")
     print(weights.tail(6).round(2).to_string())
 

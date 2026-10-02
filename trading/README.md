@@ -18,6 +18,21 @@ python -m trading.backtest
 印出 CAGR、最大回撤、Sharpe、最差月份，並和 SPY 買進持有比較，圖存到 `trading/backtest.png`。
 看完回撤覺得能接受再往下走。
 
+## 第 2 層：ML 元標籤（meta-labeling）
+
+不預測價格，預測「這個月的動能訊號會不會贏過 BIL」。
+特徵在 `features.py`（波動、回撤、動能廣度、利率與黃金動能、相關性等 12 個），
+模型在 `ml.py`，預設邏輯回歸，每年年初用之前所有資料重訓一次，純 walk-forward。
+信心低於 0.40 全退守 BIL，0.40 到 0.55 之間按比例減碼。
+
+```bash
+python -m trading.backtest_ml            # 邏輯回歸
+python -m trading.backtest_ml --model gbm
+```
+
+輸出樣本外區間的 baseline 與 ml_overlay 對照。**Sharpe 和 MaxDrawdown 要同時優於 baseline 才算贏**，
+沒贏就不要接到實盤，門檻和特徵可在 `ml.py` 的 `MLConfig` 調整。
+
 ## 模擬換股（不碰真錢）
 
 ```bash
@@ -53,5 +68,5 @@ cron 範例（每月 1 日台灣時間 06:00，美股前一日已收盤）：
 ## 測試
 
 ```bash
-python -m pytest trading/tests -q
+python -m pytest trading/tests -q   # 12 個測試
 ```
