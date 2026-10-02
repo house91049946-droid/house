@@ -1,0 +1,57 @@
+# ETF 動能輪動自動交易（Firstrade）
+
+每月月底收盤後，計算一籃子 ETF 的 3/6/12 個月平均動能，持有最強的 2 檔；
+若動能贏不過短債 ETF（BIL）就退守 BIL。一個月交易一次，不受 PDT 當沖限制。
+
+## 安裝
+
+```bash
+pip install -r trading/requirements.txt
+```
+
+## 回測（先做這步）
+
+```bash
+python -m trading.backtest
+```
+
+印出 CAGR、最大回撤、Sharpe、最差月份，並和 SPY 買進持有比較，圖存到 `trading/backtest.png`。
+看完回撤覺得能接受再往下走。
+
+## 模擬換股（不碰真錢）
+
+```bash
+python -m trading.rebalance --broker dry --no-telegram
+```
+
+## 實盤
+
+1. 複製 `.env.example` 成 `.env`，填 Firstrade 帳密與 Telegram bot。
+2. 確認 Firstrade App 已開啟零股交易。
+3. 每月最後一個交易日美股收盤後（台灣時間早上 5 點後）跑：
+
+```bash
+python -m trading.rebalance --broker firstrade
+```
+
+它會把計畫送到 Telegram，你回 `ok` 才下單，回 `no` 取消。6 小時沒回覆視為取消。
+
+## 排程
+
+cron 範例（每月 1 日台灣時間 06:00，美股前一日已收盤）：
+
+```
+0 6 1 * * cd /path/to/house && /usr/bin/python3 -m trading.rebalance --broker firstrade >> trading/logs.txt 2>&1
+```
+
+## 風險提醒
+
+- `firstrade` 套件是非官方的，Firstrade 改版會壞；壞了就照 Telegram 收到的計畫手動下單。
+- 第一次實盤請只放一部分資金，跑一到兩個月確認流程無誤再加碼。
+- 策略在震盪盤會連續小虧，這是動能策略的本質，不是 bug。
+
+## 測試
+
+```bash
+python -m pytest trading/tests -q
+```

@@ -17,3 +17,8 @@ wheels/
 
 # Claude Code 本機設定
 .claude/
+
+# 交易資料快取與回測輸出
+trading/data/*.csv
+trading/backtest.png
+trading/logs.txt
