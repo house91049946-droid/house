@@ -73,16 +73,30 @@ def metrics(equity: pd.Series, benchmark: pd.Series | None = None) -> dict[str, 
     return out
 
 
+def get_prices(proxy: bool) -> pd.DataFrame:
+    tickers = list(STRATEGY.universe) + [STRATEGY.defensive]
+    if proxy:
+        from .data_proxy import build_proxy_prices
+
+        p = build_proxy_prices()
+        return p[tickers].loc[BACKTEST.start : BACKTEST.end]
+    from .data import load_prices
+
+    return load_prices(tickers, BACKTEST.start, BACKTEST.end)
+
+
 def main() -> None:
+    import argparse
+
     import matplotlib
 
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    from .data import load_prices
-
-    tickers = list(STRATEGY.universe) + [STRATEGY.defensive]
-    prices = load_prices(tickers, BACKTEST.start, BACKTEST.end)
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--proxy", action="store_true", help="用期貨/Lean 代理資料（見 data_proxy.py）")
+    args = ap.parse_args()
+    prices = get_prices(args.proxy)
     equity, weights = run_backtest(prices)
     spy = prices["SPY"] / prices["SPY"].loc[equity.index[0]] * BACKTEST.initial_capital
     m = metrics(equity, spy)

@@ -1,6 +1,6 @@
 # ETF 動能輪動自動交易（Firstrade）
 
-每月月底收盤後，計算一籃子 ETF 的 3/6/12 個月平均動能，持有最強的 2 檔；
+每月月底收盤後，計算一籃子 ETF 的 3/6/12 個月平均動能，持有最強的 3 檔；
 若動能贏不過短債 ETF（BIL）就退守 BIL。一個月交易一次，不受 PDT 當沖限制。
 
 ## 安裝
@@ -12,8 +12,11 @@ pip install -r trading/requirements.txt
 ## 回測（先做這步）
 
 ```bash
-python -m trading.backtest
+python -m trading.backtest           # 用 yfinance 抓真實 ETF 資料
+python -m trading.backtest --proxy   # 抓不到 Yahoo 時，用期貨 / Lean 代理資料（見 data_proxy.py）
 ```
+
+已跑過的結果和判讀在 `RESULTS.md`。
 
 印出 CAGR、最大回撤、Sharpe、最差月份，並和 SPY 買進持有比較，圖存到 `trading/backtest.png`。
 看完回撤覺得能接受再往下走。
@@ -26,8 +29,8 @@ python -m trading.backtest
 信心低於 0.40 全退守 BIL，0.40 到 0.55 之間按比例減碼。
 
 ```bash
-python -m trading.backtest_ml            # 邏輯回歸
-python -m trading.backtest_ml --model gbm
+python -m trading.backtest_ml [--proxy]              # 邏輯回歸
+python -m trading.backtest_ml [--proxy] --model gbm
 ```
 
 輸出樣本外區間的 baseline 與 ml_overlay 對照。**Sharpe 和 MaxDrawdown 要同時優於 baseline 才算贏**，
@@ -68,5 +71,5 @@ cron 範例（每月 1 日台灣時間 06:00，美股前一日已收盤）：
 ## 測試
 
 ```bash
-python -m pytest trading/tests -q   # 12 個測試
+python -m pytest trading/tests -q   # 13 個測試
 ```

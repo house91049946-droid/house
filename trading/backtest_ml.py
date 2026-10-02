@@ -7,7 +7,7 @@ import argparse
 
 import pandas as pd
 
-from .backtest import metrics, run_backtest
+from .backtest import get_prices, metrics, run_backtest
 from .config import BACKTEST, STRATEGY
 from .features import build_dataset
 from .ml import MLConfig, apply_overlay, feature_importance, walk_forward_confidence
@@ -40,11 +40,9 @@ def compare(prices: pd.DataFrame, mlcfg: MLConfig) -> dict[str, dict[str, float]
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", choices=["logit", "gbm"], default="logit")
+    ap.add_argument("--proxy", action="store_true", help="用期貨/Lean 代理資料（見 data_proxy.py）")
     args = ap.parse_args()
-    from .data import load_prices
-
-    tickers = list(STRATEGY.universe) + [STRATEGY.defensive]
-    prices = load_prices(tickers, BACKTEST.start, BACKTEST.end)
+    prices = get_prices(args.proxy)
     mlcfg = MLConfig(model=args.model)
     r = compare(prices, mlcfg)
 

@@ -1,6 +1,7 @@
 """ETF 動能輪動的訊號計算。純函數，不碰網路、不碰券商，方便測試。"""
 from __future__ import annotations
 
+import numpy as np
 import pandas as pd
 
 from .config import StrategyConfig
@@ -26,6 +27,7 @@ def momentum_scores(prices: pd.DataFrame, asof: pd.Timestamp, cfg: StrategyConfi
             return pd.Series(float("nan"), index=prices.columns)
         past = hist.iloc[-1 - n]
         scores += last / past - 1.0
+    # 某資產在回看期內還不存在 → NaN，之後視為不可投資
     return scores / len(cfg.lookbacks_months)
 
 
@@ -34,12 +36,12 @@ def target_weights(prices: pd.DataFrame, asof: pd.Timestamp, cfg: StrategyConfig
     scores = momentum_scores(prices, asof, cfg)
     all_assets = list(cfg.universe) + [cfg.defensive]
     w = pd.Series(0.0, index=all_assets)
-    if scores.isna().any():
+    if np.isnan(scores[cfg.defensive]) or scores[list(cfg.universe)].isna().all():
         w[cfg.defensive] = 1.0
         return w
 
     threshold = scores[cfg.defensive] if cfg.use_defensive_as_threshold else 0.0
-    ranked = scores[list(cfg.universe)].sort_values(ascending=False)
+    ranked = scores[list(cfg.universe)].dropna().sort_values(ascending=False)
     picks = ranked.head(cfg.top_n)
     slot = 1.0 / cfg.top_n
     for t, sc in picks.items():

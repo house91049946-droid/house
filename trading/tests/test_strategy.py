@@ -71,3 +71,12 @@ def test_plan_trades_sells_before_buys_and_skips_dust():
     assert trades[1].ticker == "A"
     # 淨值 1105，目標全壓 A，現有 A 價值 5，差 1100 → 22 股
     assert trades[1].qty == pytest.approx(22.0)
+
+
+def test_asset_without_history_is_ignored_not_fatal():
+    p = synth({"A": 0.05, "B": 0.30, "C": 0.0, "CASH": 0.01})
+    p.loc[: p.index[-100], "B"] = float("nan")  # B 最近 100 天才上市
+    w = target_weights(p, p.index[-1], CFG)
+    assert w["B"] == 0.0
+    assert w.sum() == pytest.approx(1.0)
+    assert w["A"] == pytest.approx(1.0)

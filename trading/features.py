@@ -36,14 +36,14 @@ def features_at(prices: pd.DataFrame, asof: pd.Timestamp, cfg: StrategyConfig, p
     if len(hist) < 260:
         return None
     scores = momentum_scores(prices, asof, cfg)
-    if scores.isna().any():
+    if np.isnan(scores["SPY"]) or np.isnan(scores[cfg.defensive]):
         return None
     spy = hist["SPY"]
     uni = list(cfg.universe)
     bil = scores[cfg.defensive]
     rets60 = hist[uni].pct_change().tail(60)
     corr = rets60.corr().values
-    avg_corr = float(corr[np.triu_indices_from(corr, k=1)].mean())
+    avg_corr = float(np.nanmean(corr[np.triu_indices_from(corr, k=1)]))
     v20, v60 = _ann_vol(spy, 20), _ann_vol(spy, 60)
     return pd.Series(
         {
@@ -53,7 +53,7 @@ def features_at(prices: pd.DataFrame, asof: pd.Timestamp, cfg: StrategyConfig, p
             "spy_dd252": float(spy.iloc[-1] / spy.tail(252).max() - 1),
             "spy_ma200_gap": float(spy.iloc[-1] / spy.tail(200).mean() - 1),
             "mom_spread": float(scores[uni].max() - bil),
-            "mom_breadth": float((scores[uni] > bil).mean()),
+            "mom_breadth": float((scores[uni].dropna() > bil).mean()),
             "mom_dispersion": float(scores[uni].std()),
             "tlt_mom": float(scores.get("TLT", 0.0)),
             "gld_mom": float(scores.get("GLD", 0.0)),

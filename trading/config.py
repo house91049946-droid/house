@@ -11,7 +11,7 @@ class StrategyConfig:
     # 動能計算視窗（月），多視窗平均可以降低單一視窗的運氣成分
     lookbacks_months: tuple[int, ...] = (3, 6, 12)
     # 每月持有幾檔
-    top_n: int = 2
+    top_n: int = 3
     # 絕對動能門檻：候選資產的動能必須高於這個值才持有，否則該額度退守 defensive
     # 設成 defensive 的動能表示「要贏過現金才持有」（雙動能的作法）
     use_defensive_as_threshold: bool = True

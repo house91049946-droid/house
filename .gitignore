@@ -22,3 +22,4 @@ wheels/
 trading/data/*.csv
 trading/backtest.png
 trading/logs.txt
+trading/data/proxy/
