@@ -304,6 +304,28 @@ class IdeaDB:
         Path(path).write_text(json.dumps(ideas, ensure_ascii=False, indent=2), encoding="utf-8")
         return len(ideas)
 
+    def import_json(self, path: str | os.PathLike) -> int:
+        """從 export_json 產生的 JSON 匯入。以 (title, url) 判斷重複,已存在的略過。回傳新增筆數。"""
+        items = json.loads(Path(path).read_text(encoding="utf-8"))
+        existing = {(i.title, i.url) for i in self.list(order="id")}
+        added = 0
+        for it in items:
+            key = (it.get("title", "").strip(), (it.get("url") or "").strip())
+            if not key[0] or key in existing:
+                continue
+            self.add(
+                key[0],
+                it.get("content", ""),
+                it.get("tags"),
+                it.get("status", "idea"),
+                it.get("priority", 3),
+                url=key[1],
+                kind=it.get("kind"),
+            )
+            existing.add(key)
+            added += 1
+        return added
+
     def export_csv(self, path: str | os.PathLike) -> int:
         ideas = self.list(order="id")
         with open(path, "w", newline="", encoding="utf-8-sig") as f:

@@ -13,6 +13,7 @@
     python Idea/cli.py rm 1
     python Idea/cli.py tags
     python Idea/cli.py export ideas.json
+    python Idea/cli.py import Idea/data/ideas.json   # 匯入(重複的略過)
 """
 
 from __future__ import annotations
@@ -101,6 +102,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     ex = sub.add_parser("export", help="匯出成 .json 或 .csv")
     ex.add_argument("path")
+
+    im = sub.add_parser("import", help="從 JSON 匯入(以標題+連結判斷重複,已存在的略過)")
+    im.add_argument("path")
     return p
 
 
@@ -156,6 +160,9 @@ def main(argv: list[str] | None = None) -> int:
                 else:
                     n = db.export_json(path)
                 print(f"已匯出 {n} 筆到 {path}")
+            elif args.cmd == "import":
+                n = db.import_json(args.path)
+                print(f"已匯入 {n} 筆(重複略過)")
         except (KeyError, ValueError) as exc:
             msg = exc.args[0] if exc.args else str(exc)
             print(f"錯誤:{msg}", file=sys.stderr)

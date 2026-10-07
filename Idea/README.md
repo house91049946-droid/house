@@ -35,7 +35,12 @@ python Idea/cli.py rm 1                       # 刪除
 python Idea/cli.py tags                       # 所有標籤
 python Idea/cli.py stats                      # 各狀態數量
 python Idea/cli.py export ideas.json          # 或 ideas.csv
+python Idea/cli.py import Idea/data/ideas.json  # 匯入收集檔(重複的略過)
 ```
+
+### 跟 Claude 一起收集
+在對話裡丟截圖或連結給 Claude,它會把點子寫進 **`Idea/data/ideas.json`**(隨 git 提交)。
+你 pull 下來後跑 `python Idea/cli.py import Idea/data/ideas.json` 就會進到本機資料庫;同一筆(標題 + 連結相同)不會重複匯入。
 用 `--db 路徑` 或環境變數 `IDEA_DB_PATH` 可以指定不同的資料庫檔案。
 
 ## 網頁介面
@@ -66,4 +71,5 @@ with IdeaDB() as db:
 | `cli.py` | 命令列工具 |
 | `app.py` | Gradio 網頁介面 |
 | `test_db.py` | 核心邏輯測試(`python -m unittest Idea/test_db.py`) |
+| `data/ideas.json` | 收集檔,隨 git 提交,用 `import` 匯入本機資料庫 |
 | `data/ideas.db` | 你的資料(已在 `.gitignore`,不會提交) |

@@ -97,6 +97,11 @@ class IdeaDBTest(unittest.TestCase):
             self.assertEqual(self.db.export_json(Path(d) / "x.json"), 2)
             self.assertEqual(self.db.export_csv(Path(d) / "x.csv"), 2)
             self.assertIn("a", (Path(d) / "x.csv").read_text(encoding="utf-8-sig"))
+            other = IdeaDB(":memory:")
+            self.assertEqual(other.import_json(Path(d) / "x.json"), 2)
+            self.assertEqual(other.import_json(Path(d) / "x.json"), 0)  # 重複略過
+            self.assertEqual(other.stats()["total"], 2)
+            other.close()
 
 
 if __name__ == "__main__":

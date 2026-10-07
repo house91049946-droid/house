@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "title": "OpenCut:開源、免費、無浮水印的 CapCut 替代品",
+    "content": "Threads 上 0xalpha.ai 分享(2026-10-06)。開源影片剪輯器,主打 CapCut 替代品、完全沒有浮水印。\n功能:多軌剪輯、plugins、AI agents、自動化、跨平台支援。GitHub 約 93K stars、9K forks、97 位貢獻者。\n可以做的事:1) 拿來當日常剪片工具;2) 研究它的 plugin / AI agent 架構,看能不能把自己的自動化流程(例如批次上字幕、裁切短影片)接上去;3) 參考它的多軌時間軸 UI。",
+    "url": "https://github.com/OpenCut-app/OpenCut",
+    "kind": "article",
+    "tags": [
+      "video-editing",
+      "open-source",
+      "tool"
+    ],
+    "status": "idea",
+    "priority": 3,
+    "created_at": "2026-10-07T00:13:30",
+    "updated_at": "2026-10-07T00:13:30"
+  }
+]
