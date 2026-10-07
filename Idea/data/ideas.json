@@ -14,5 +14,24 @@
     "priority": 3,
     "created_at": "2026-10-07T00:13:30",
     "updated_at": "2026-10-07T00:13:30"
+  },
+  {
+    "id": 2,
+    "title": "ArtCraft:用 AI + Rust 開源復刻 Adobe 全家桶",
+    "content": "Threads 上 jhangyu 分享(2026-10-07):「Adobe 全家桶被人用 AI 復刻了」。\n專案 ArtCraft(storytold/artcraft),自稱「Cursor for film」。桌面版用 Rust 寫、本機執行,monorepo 連 server 與網站都開源,網頁版在 getartcraft.com。\n內含:虛擬片場(3D 場景擺位、blocking)、2D canvas(inpaint / outpaint)、AI 模型聚合器(Veo、Seedance 等,可自帶 API key:Midjourney、FAL、Replicate)。\n旗下 Crafting Apps 系列(據報導)對應 Adobe:PhotoCraft→Photoshop、VectorCraft→Illustrator、FilmCraft→Premiere、LightCraft→Lightroom、EffectCraft→After Effects、DesignCraft→InDesign、PrintCraft→Acrobat。\n可以做的事:1) 跟 OpenCut 一起評估當免費剪輯 / 修圖工具;2) 看它「自帶 API key 聚合多家 AI 模型」的做法,套到自己的 AI 工具上;3) 參考 Rust 桌面 app 架構。\n備註:細節來自網路搜尋,repo 頁面本身在這個環境無法直接開啟,各 App 是否都已釋出請以 repo 為準。",
+    "url": "https://github.com/storytold/artcraft",
+    "kind": "article",
+    "tags": [
+      "open-source",
+      "adobe-alternative",
+      "ai",
+      "video",
+      "design",
+      "tool"
+    ],
+    "status": "idea",
+    "priority": 3,
+    "created_at": "2026-10-07T14:29:53",
+    "updated_at": "2026-10-07T14:29:53"
   }
 ]
