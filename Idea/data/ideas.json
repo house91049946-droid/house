@@ -33,5 +33,73 @@
     "priority": 3,
     "created_at": "2026-10-07T14:29:53",
     "updated_at": "2026-10-07T14:29:53"
+  },
+  {
+    "id": 3,
+    "title": "OpenMontage:把 Claude Code 變成影片製作團隊(研究→腳本→配音→字幕→輸出)",
+    "content": "來源:FB Reels「MingXuan Gen AI」影片《GitHub 上爆紅的四個 AI Agent》(2026-10-11),四個工具之一。\n是什麼:開源(AGPL-3.0)的 agentic 影片製作系統,沒有自己的 orchestrator,直接讓 Claude Code / Cursor 等 coding agent 讀 YAML pipeline 當導演。12 條 pipeline、50+ 工具、500+ skill 檔。流程:網路研究 → 寫腳本 → AI 配音 → 生圖 / 找免費配樂 → 燒字幕 → ffmpeg 輸出,輸出前自動用 ffprobe / 抽幀 / 音量檢查自審,每個創意決定都會先問你。\n評估:★★★★ 四個裡最值得試。你最近收的 OpenCut、ArtCraft 都是影片方向,這個是「用對話把影片做出來」的最後一哩。安裝只要 clone + make setup。\n注意:配音、生圖要自備 API key(有費用);AGPL 代表若改了拿去當服務要開源;fork 很多,認 calesthio/OpenMontage 這個原版。\n可以做的事:1) 拿食物熱量 App 或 FB 不動產物件做一支 30 秒介紹影片當測試;2) 看它的 YAML pipeline 寫法,套到自己的 RPA 流程。",
+    "url": "https://github.com/calesthio/OpenMontage",
+    "kind": "article",
+    "tags": [
+      "video",
+      "ai-agent",
+      "claude-code",
+      "content",
+      "tool"
+    ],
+    "status": "idea",
+    "priority": 4,
+    "created_at": "2026-10-11T00:32:33",
+    "updated_at": "2026-10-11T00:32:33"
+  },
+  {
+    "id": 4,
+    "title": "Agency Agents:300 個現成的 Claude Code 專家人設(工程、行銷、設計、銷售…)",
+    "content": "來源:同上 FB Reels《GitHub 上爆紅的四個 AI Agent》。影片說 230+ 個、18 個部門,實際 2026-10 已近 300 個、約 19 個 division。\n是什麼:一個 repo 裝滿 Markdown 格式的 sub-agent 人設檔,每個有角色、流程、交付物。跑 ./scripts/install.sh --tool claude-code 就複製到 ~/.claude/agents/,也可只裝某個部門或某幾個 agent。MIT 授權、100k+ stars、fork 2 萬+。\n評估:★★★ 值得「挑著用」,不要全裝(300 個會把 agent 清單塞爆)。對你有用的大概是:marketing / copywriting(FB 不動產物件文案)、design(Gradio 介面)、testing / security(RPA 腳本檢查)。\n注意:本質是 prompt 集,品質參差;先挑 3~5 個試,不好用就刪。\n可以做的事:挑 copywriter 類 agent 幫 FB/data/listings.csv 自動產生物件描述。",
+    "url": "https://github.com/msitarzewski/agency-agents",
+    "kind": "article",
+    "tags": [
+      "ai-agent",
+      "claude-code",
+      "prompt",
+      "tool"
+    ],
+    "status": "idea",
+    "priority": 3,
+    "created_at": "2026-10-11T00:32:33",
+    "updated_at": "2026-10-11T00:32:33"
+  },
+  {
+    "id": 5,
+    "title": "Graft:Claude Code 的 codebase 地圖 hook,號稱省 42% token",
+    "content": "來源:同上 FB Reels《GitHub 上爆紅的四個 AI Agent》。注意 GitHub 上有好幾個叫 Graft 的專案,影片講的是 nanonets / trailhq 這個(另一個 AEndrix03/Graft 是本機記憶工具,不同東西)。\n是什麼:開源 context layer,幫 coding agent 建一份持久的程式碼地圖,透過 Claude Code hooks 接入(不是 MCP server),agent 就不用每次重新 grep / 探索。npx @nanonets/graft init 一行安裝。README 數據:token −42%、tool call −46%、時間 −60%。\n評估:★★ 目前不需要。那個 42% 是作者自測,而且測的是大 repo;我們的 house repo 只有幾十個檔案,agent 本來就一眼看完,省不到什麼。\n什麼時候回來看:專案長到幾百個檔案、或 Claude Code 常常重複讀同樣的檔案時。",
+    "url": "https://github.com/trailhq/Graft",
+    "kind": "article",
+    "tags": [
+      "ai-agent",
+      "claude-code",
+      "dev-tool"
+    ],
+    "status": "idea",
+    "priority": 2,
+    "created_at": "2026-10-11T00:32:33",
+    "updated_at": "2026-10-11T00:32:33"
+  },
+  {
+    "id": 6,
+    "title": "CodeBase Memory MCP:把整個 repo 建成知識圖譜給 agent 查(158 種語言、本機執行)",
+    "content": "來源:同上 FB Reels《GitHub 上爆紅的四個 AI Agent》。同名專案還有 yuga-hashimoto/codebase-memory(記「決策 / 慣例」的那種),影片講的應該是 DeusData 這個。\n是什麼:單一執行檔的 MCP server,用 tree-sitter 把 repo 解析成函式、類別、呼叫鏈、HTTP route 的知識圖譜,agent 用 17 個工具做結構查詢而不是逐檔讀。全本機、不用 API key。作者論文稱 token 省 10 倍、tool call 少 2.1 倍。安裝:加進 ~/.claude.json 或專案 .mcp.json。\n評估:★★ 跟 Graft 同一類問題、同一個結論:我們的 repo 太小,用不到。兩個擇一就好,真要用時 CodeBase Memory 比 Graft 更通用(MCP,不綁 Claude Code)。\n什麼時候回來看:接手別人的大型 codebase、或要跨多個 service 追呼叫關係時。",
+    "url": "https://github.com/DeusData/codebase-memory-mcp",
+    "kind": "article",
+    "tags": [
+      "ai-agent",
+      "claude-code",
+      "mcp",
+      "dev-tool"
+    ],
+    "status": "idea",
+    "priority": 2,
+    "created_at": "2026-10-11T00:32:33",
+    "updated_at": "2026-10-11T00:32:33"
   }
 ]
