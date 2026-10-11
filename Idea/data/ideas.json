@@ -119,5 +119,23 @@
     "priority": 3,
     "created_at": "2026-10-11T13:02:17",
     "updated_at": "2026-10-11T13:02:17"
+  },
+  {
+    "id": 8,
+    "title": "Higgsfield:拍一次真人影片就能轉成動畫角色(毛氈玩偶風格、背景也一起換)",
+    "content": "來源:FB Reels「設計實驗室」(2026-10-11)《只要拍攝一次,你也能變成動畫角色》。示範:真人抱著玩偶坐在白牆前拍一段 → AI 轉成毛氈玩偶風格的動畫角色,連背景都換成有書架、山景的工作室,動作、構圖與原片一致。\n是什麼:Higgsfield 的 video-to-video 風格轉換(影片裡沒講確切功能名,他們平台有 30+ 風格預設、Soul 角色動畫等)。付費 SaaS,不是開源;各來源報的價格不一(約 ~19/月,免費方案無商用授權),以 higgsfield.ai 官網為準。\n評估:★★★ 內容製作很好用,但不是能自己架的工具。跟 ArtCraft(可自帶 API key、含 Higgsfield 在它的競品清單)、OpenMontage(影片流程)放在同一組看。\n可以做的事:1) 不動產物件介紹:房仲本人出鏡一次,轉成動畫角色解說,風格統一又不用一直露臉;2) 食物熱量 App 的宣傳短片;3) 真要用再比較 Runway、Kling 的 video-to-video 價格。\n備註:功能名與價格未經官網確認。",
+    "url": "https://higgsfield.ai",
+    "kind": "video",
+    "tags": [
+      "ai-video",
+      "video-to-video",
+      "animation",
+      "content",
+      "tool"
+    ],
+    "status": "idea",
+    "priority": 3,
+    "created_at": "2026-10-11T13:45:45",
+    "updated_at": "2026-10-11T13:45:45"
   }
 ]
