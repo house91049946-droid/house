@@ -137,5 +137,23 @@
     "priority": 3,
     "created_at": "2026-10-11T13:45:45",
     "updated_at": "2026-10-11T13:45:45"
+  },
+  {
+    "id": 9,
+    "title": "Agent Reach:讓 Claude Code 免費讀 X / Reddit / YouTube / B站 / 小紅書 的內容",
+    "content": "來源:使用者於 2026-10-12 提到「agent reach」。\n是什麼:開源(MIT)Python CLI,幫 AI agent 接上各平台的免費讀取 / 搜尋後端(Twitter/X、Reddit、YouTube、GitHub、Bilibili、小紅書等),不用付費 API。它負責挑選、安裝、健檢(agent-reach doctor)各平台最好用的開源讀取工具,之後 agent 直接呼叫。也有 MCP server 包裝。支援 Claude Code、Cursor、Windsurf。v1.5.0(2026-06),GitHub 約 65k~95k stars。免費,伺服器部署才需約 /月 proxy。\n評估:★★★★ 很對症。我們這個 Idea 資料庫的痛點就是:Threads / FB 的連結在雲端 session 打不開,每次都要靠截圖。裝了 Agent Reach 後,在本機 Claude Code 貼 YouTube / X / 小紅書 / Reddit 連結,就能自動抓內容寫進資料庫。\n限制:1) 官方支援清單沒有 Facebook 和 Threads(我們最常用的兩個),這兩個仍要截圖;2) 要在本機跑,雲端 session 的網路政策照樣擋;3) 用非官方後端讀平台,平台改版就會壞,升級後要重跑 doctor;4) 有安全疑慮討論(它會安裝第三方工具),裝前看一下 README 的 security 段落。\n可以做的事:1) 本機 pip 裝起來,跑 doctor 看哪些平台能用;2) 在 Idea/cli.py 加一個 fetch 指令:貼連結 → 用 agent-reach 抓標題與內容 → 自動填進 add;3) 先用 YouTube 測,因為影片連結最常見。",
+    "url": "https://github.com/Panniantong/Agent-Reach",
+    "kind": "article",
+    "tags": [
+      "ai-agent",
+      "claude-code",
+      "mcp",
+      "web-scraping",
+      "tool"
+    ],
+    "status": "idea",
+    "priority": 4,
+    "created_at": "2026-10-12T00:12:12",
+    "updated_at": "2026-10-12T00:12:12"
   }
 ]
