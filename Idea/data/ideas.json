@@ -123,7 +123,7 @@
   {
     "id": 8,
     "title": "Higgsfield:拍一次真人影片就能轉成動畫角色(毛氈玩偶風格、背景也一起換)",
-    "content": "來源:FB Reels「設計實驗室」(2026-10-11)《只要拍攝一次,你也能變成動畫角色》。示範:真人抱著玩偶坐在白牆前拍一段 → AI 轉成毛氈玩偶風格的動畫角色,連背景都換成有書架、山景的工作室,動作、構圖與原片一致。\n是什麼:Higgsfield 的 video-to-video 風格轉換(影片裡沒講確切功能名,他們平台有 30+ 風格預設、Soul 角色動畫等)。付費 SaaS,不是開源;各來源報的價格不一(約 ~19/月,免費方案無商用授權),以 higgsfield.ai 官網為準。\n評估:★★★ 內容製作很好用,但不是能自己架的工具。跟 ArtCraft(可自帶 API key、含 Higgsfield 在它的競品清單)、OpenMontage(影片流程)放在同一組看。\n可以做的事:1) 不動產物件介紹:房仲本人出鏡一次,轉成動畫角色解說,風格統一又不用一直露臉;2) 食物熱量 App 的宣傳短片;3) 真要用再比較 Runway、Kling 的 video-to-video 價格。\n備註:功能名與價格未經官網確認。",
+    "content": "來源:FB Reels「設計實驗室」(2026-10-11)《只要拍攝一次,你也能變成動畫角色》。示範:真人抱著玩偶坐在白牆前拍一段 → AI 轉成毛氈玩偶風格的動畫角色,連背景都換成有書架、山景的工作室,動作、構圖與原片一致。\n是什麼:Higgsfield 的 video-to-video 風格轉換(影片裡沒講確切功能名,他們平台有 30+ 風格預設、Soul 角色動畫等)。付費 SaaS,不是開源;各來源報的價格不一(約 ~19/月,免費方案無商用授權),以 higgsfield.ai 官網為準。\n評估:★★★ 內容製作很好用,但不是能自己架的工具。跟 ArtCraft(可自帶 API key、含 Higgsfield 在它的競品清單)、OpenMontage(影片流程)放在同一組看。\n可以做的事:1) 不動產物件介紹:房仲本人出鏡一次,轉成動畫角色解說,風格統一又不用一直露臉;2) 食物熱量 App 的宣傳短片;3) 真要用再比較 Runway、Kling 的 video-to-video 價格。\n備註:功能名與價格未經官網確認。\n\n--- 補充(2026-10-12,Threads @gptsavyy,#higgsfieldpartner 業配文)---\n新用法「Higgsfield Katana」:2026-10-08 發布,直接在 Claude 裡用。設定:Claude → Connectors → 新增自訂 connector,URL https://mcp.higgsfield.ai/mcp,登入 Higgsfield 帳號。之後在對話輸入「use Higgsfield / katana + 需求」,Claude 會呼叫 Higgsfield 的工具剪片、加效果。\nKatana 是什麼:由「Claude Motion」驅動,上傳參考圖就能做可編輯的動態圖形、產品發表影片、風格化剪輯;有社群預設(動態圖形、3D 動畫、產品、時尚、汽車、旅遊)。官方補充說明:這部分是純程式碼生成的動態圖形,不是 AI 影片生成。費用從既有 Higgsfield credits 扣。\n評估更新:這讓 Higgsfield 從「另開網站用」變成「在 Claude 對話裡直接用」,門檻更低。對你的用法:物件照片 → 「做一支 15 秒的物件發表動態短片」一句話搞定。但 Katana 做的是動態圖形,「真人轉動畫角色」那個功能還是要去 Higgsfield 網站。\n備註:來源是業配文,功能描述來自官方部落格,價格與方案未驗證。",
     "url": "https://higgsfield.ai",
     "kind": "video",
     "tags": [
@@ -134,9 +134,9 @@
       "tool"
     ],
     "status": "idea",
-    "priority": 3,
+    "priority": 4,
     "created_at": "2026-10-11T13:45:45",
-    "updated_at": "2026-10-11T13:45:45"
+    "updated_at": "2026-10-12T00:19:25"
   },
   {
     "id": 9,
