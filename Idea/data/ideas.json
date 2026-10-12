@@ -256,5 +256,23 @@
     "priority": 2,
     "created_at": "2026-10-12T00:15:09",
     "updated_at": "2026-10-12T00:15:09"
+  },
+  {
+    "id": 16,
+    "title": "Claude Code Mods:用一句話幫 Claude Code 加功能、改介面、攔危險指令(TypeScript 小函式,熱重載)",
+    "content": "來源:FB「數位時代」貼文(2026-10-12 看到)《Claude Code 新功能 Mods 是什麼?安裝 + 自製 4 步驟》。\n是什麼:Anthropic 2026-10 初推出。Mod 是幾行 TypeScript 的 function hooks,在 Claude Code 內部執行,可以:改寫 prompt、重畫介面(面板、按鈕、狀態列、toast)、攔下或改寫工具呼叫、新增 slash command,甚至取代內建功能。支援熱重載,改完馬上生效。透過 /plugin 安裝,本體是 hooks module(register.js)+ hooks/hooks.json。\n跟 Hooks 的差別:舊 Hooks 是外部腳本 / HTTP / prompt,只能「放行、阻擋、記錄」,靠 exit code 溝通;Mods 在內部跑,能「改寫、取代、畫 UI」。只要擋或記錄 → Hooks;要視覺化或改行為 → Mods。兩者並存,Hooks 沒廢棄。\n自製:直接跟 Claude 說「幫我做一個 mod 做 X」,核准後開熱重載就能跑(這個 session 也有 plugin-authoring skill 可以做)。\n注意:Mods 不在沙盒執行、權限大,裝第三方 mod 前要看程式碼。\n評估:★★★ 你每天用 Claude Code,這是「把工具改成自己順手」的能力,但不是必需品。目前多數時間用雲端 session,Mods 主要在本機終端機 / 桌面版生效。\n可以做的事:1) 做一個「收點子」slash command:貼連結 + 一句想法 → 自動寫進 Idea/data/ideas.json;2) 做一個攔截 mod:跑 FB/poster.py 正式發文前強制確認,避免誤發;3) 做一個狀態列顯示 Idea 資料庫筆數和待辦點子。\n先從第 1 個開始最划算,因為它直接解決「每次收點子都要靠我」這件事。",
+    "url": "https://www.blocktempo.com/anthropic-claude-code-mods-typescript-plugins-hot-reload-sandbox-risk/",
+    "kind": "article",
+    "tags": [
+      "claude-code",
+      "mods",
+      "hooks",
+      "dev-tool",
+      "customization"
+    ],
+    "status": "idea",
+    "priority": 3,
+    "created_at": "2026-10-12T10:34:47",
+    "updated_at": "2026-10-12T10:34:47"
   }
 ]
