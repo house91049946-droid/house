@@ -274,5 +274,23 @@
     "priority": 3,
     "created_at": "2026-10-12T10:34:47",
     "updated_at": "2026-10-12T10:34:47"
+  },
+  {
+    "id": 17,
+    "title": "REA(Reverse Engineer Anything):讓 Claude Code / Codex 拆解沒有原始碼的軟體",
+    "content": "來源:動區 BlockTempo 文章《AI 逆向工具「REA」GitHub 十天衝上 17 萬星,真的什麼都能拆嗎?》(2026-10-13,作者 Joe),FB 轉貼。\n是什麼:開源(MIT)的 CLI + MCP server,npm 套件 rea-agents,TypeScript 寫。讓 Claude Code、Codex、Cursor 這類 agent 分析沒有原始碼的軟體:讀 binary、追呼叫關係、還原邏輯、產出文件。需要 Node 22.19+。原生程式分析要自己先裝 Hopper / Ghidra / IDA,REA 只是把這些工具串給 agent 用。\n文章的保留意見:1) 官方展示的成果只是「單一函式的還原」,離「什麼都能拆」很遠;2) 不聲稱能還原完整原始碼或複製整個 App;3) 合法使用條款是爆紅後才補上;4) 星數各來源不一(10/7 不到 1 萬 → 10/12 破 10 萬 → 文章說 17 萬),成長靠行銷多過靠 demo。\n評估:★★ 跟你的不動產 / 內容方向沒關係,我們的專案都有原始碼,用不到逆向。而且逆向別人的商業軟體有法律風險(著作權、使用條款),台灣也適用。\n唯一有價值的用法:分析「自己的」舊程式或沒文件的第三方函式庫,讓 agent 幫忙看懂。例如 FB 自動發文那支 Playwright 腳本要對照的 FB 前端行為,理論上可以拿來分析,但那是網頁不是 binary,直接看 DOM 比較快。\n結論:記著,不建議碰。GitHub repo 路徑是我依 npm 套件名推的,未驗證。",
+    "url": "https://github.com/rea-agents/rea",
+    "kind": "article",
+    "tags": [
+      "ai-agent",
+      "claude-code",
+      "reverse-engineering",
+      "dev-tool",
+      "mcp"
+    ],
+    "status": "idea",
+    "priority": 2,
+    "created_at": "2026-10-13T12:34:01",
+    "updated_at": "2026-10-13T12:34:01"
   }
 ]
