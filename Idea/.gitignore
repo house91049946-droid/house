@@ -1,0 +1,4 @@
+# 個人點子資料庫與匯出檔,不提交(ideas.json 是隨 git 提交的收集檔,會保留)
+data/*.db
+data/*.db-journal
+data/ideas_export.*
