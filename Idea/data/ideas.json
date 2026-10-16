@@ -311,5 +311,23 @@
     "priority": 4,
     "created_at": "2026-10-15T14:03:59",
     "updated_at": "2026-10-15T14:03:59"
+  },
+  {
+    "id": 19,
+    "title": "ChatGPT Intelligent UI:提示詞加「with Intelligent UI」,回答直接變成互動介面(地圖、圖表、滑桿)",
+    "content": "來源:FB Reels「Marco Lai」(2026-10-16)《ChatGPT 新功能太強了》。示範:輸入「幫我做一個台灣 6 天 5 夜的行程 ... with Intelligent UI,然後是有地圖的」,ChatGPT 直接生成帶地圖的互動行程,不是純文字。\n是什麼:OpenAI 2026-10-07 開始大範圍推出的 Intelligent UI,報導稱搭配 GPT-6。回答不再只是文字,模型依問題自動挑格式:地圖、圖表、照片、可拖的預算滑桿、小工具。用現成的介面元件組出來,邊生成邊顯示。各方案含免費版都有,不另收費。\n使用技巧(影片重點):提示詞明講「with Intelligent UI」加你要的元件(有地圖的、有滑桿的),比讓它自己猜更容易觸發。TechRadar 實測:直接要東京三日行程只拿到普通地圖,追問「預算不含機票」後才出現可互動的預算滑桿。\n評估:★★★ 對你的用法:1) 帶看路線規劃:「幫我排明天三個物件的帶看順序 with Intelligent UI,有地圖的」,直接出路線圖;2) 給客戶看區域生活機能:學校、捷運、超市一張互動地圖;3) 物件比較表用滑桿篩預算。這些 Claude 這邊做不到同樣的即時互動 UI,算 ChatGPT 目前的獨有優勢。\n限制:1) 什麼時候出 UI 由模型決定,簡單問題還是純文字;2) GPT-6 這個連結只有媒體報導,沒看到 OpenAI 官方確認;3) GitHub 上的 open-intelligent-ui、OpenIntelligentUI 是開源仿作,不是 ChatGPT 本體。\n跟 Idea 資料庫的關係:如果想在自己的工具上做類似效果,可以看 thesysdev/open-intelligent-ui 或 CopilotKit/OpenIntelligentUI,套到 Gradio 之外的前端。",
+    "url": "https://www.techradar.com/ai-platforms-assistants/chatgpt/chatgpt-just-changed-how-it-works-with-intelligent-ui-here-are-5-things-you-can-do-now-that-you-couldnt-before",
+    "kind": "video",
+    "tags": [
+      "chatgpt",
+      "generative-ui",
+      "prompt",
+      "travel",
+      "tool"
+    ],
+    "status": "idea",
+    "priority": 3,
+    "created_at": "2026-10-16T16:54:45",
+    "updated_at": "2026-10-16T16:54:45"
   }
 ]
